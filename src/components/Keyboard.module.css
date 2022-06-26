@@ -1,0 +1,14 @@
+.keyboard {
+
+}
+
+.key {
+    width: 10px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    display: inline-block;
+}
+
+.key.white {
+    background-color: rgba(255, 255, 255, 0.25);
+}
