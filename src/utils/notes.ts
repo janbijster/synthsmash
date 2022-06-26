@@ -7,6 +7,7 @@ export type Note = {
   name: string;
   midi: number;
   color: NoteColor;
+  on?: boolean;
 };
 
 export const octaveNotes: Note[] = [
@@ -34,7 +35,7 @@ export const getOctave = (octaveNumber: number = 1) =>
 export const getNotes = (startOctave: number, numOctaves: number = 2) => {
   let notes: Note[] = [];
   for (let i = 0; i < numOctaves; i++) {
-    notes = [...notes, ...getOctave(startOctave)];
+    notes = [...notes, ...getOctave(i + startOctave)];
   }
   return notes;
 };

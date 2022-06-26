@@ -1,6 +1,6 @@
-.App {
+.app {
   margin: 0;
-  padding: 0;
+  padding: 40px calc(50vw - 120px);
   background-color: #000;
   width: 100%;
   height: 100%;

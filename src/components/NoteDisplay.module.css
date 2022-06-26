@@ -1,0 +1,4 @@
+.noteDisplay {
+    width: 240px;
+    height: calc(50vh - 60px);
+}
