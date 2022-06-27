@@ -3,6 +3,7 @@ import styles from "./Keyboard.module.css";
 import {useEventListener} from "../utils/hooks";
 import { computerKeyboardMapping } from "../utils/keys";
 import { useState } from "react";
+import { playNote } from '../utils/tone';
 
 type KeyboardProps = {
   startOctave?: number;
@@ -24,6 +25,9 @@ const Keyboard = ({ startOctave = 1, numOctaves = 2 }: KeyboardProps) => {
         const noteIndex = notes.findIndex(note => note.midi === midi)
         if (noteIndex > -1) {
             toggleNote(noteIndex, value)
+            if (value) {
+                playNote(notes[noteIndex].name)
+            }
         }
     }
 
