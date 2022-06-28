@@ -1,15 +1,14 @@
-import styles from  './App.module.css';
-import Keyboard from './components/Keyboard';
-import NoteDisplay from './components/NoteDisplay';
+import styles from './App.module.css'
+import Keyboard from './components/Keyboard'
 
 function App() {
-  return (
-    <div className={styles.app}>
-      <NoteDisplay />
-      <Keyboard/>
-      <NoteDisplay />
-    </div>
-  );
+    return (
+        <div className={styles.app}>
+            <div className={styles.keyboardHolder}>
+                <Keyboard />
+            </div>
+        </div>
+    )
 }
 
-export default App;
+export default App
