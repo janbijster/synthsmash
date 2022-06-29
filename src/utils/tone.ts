@@ -1,8 +1,16 @@
 import * as Tone from 'tone'
 
 Tone.context.lookAhead = 0
-const synth = new Tone.Synth().toDestination();
+const synth = new Tone.Synth().toDestination()
 
-export const playNote = (note: string) => {
-    synth.triggerAttackRelease(note, "8n")
+let lastNote: string
+export const startNote = (note: string) => {
+    synth.triggerAttack(note, Tone.now())
+    lastNote = note
+}
+
+export const stopNote = (note: string) => {
+    if (lastNote === note) {
+        synth.triggerRelease(Tone.now())
+    }
 }

@@ -2,7 +2,7 @@ import { getNotes, Note } from '../utils/notes'
 import { useEventListener } from '../utils/hooks'
 import { computerKeyboardMapping } from '../utils/keys'
 import { useState } from 'react'
-import { playNote } from '../utils/tone'
+import { startNote, stopNote } from '../utils/tone'
 import NoteDisplay from './NoteDisplay'
 
 type KeyboardProps = {
@@ -38,7 +38,7 @@ const Keyboard = ({ startOctave = 1, numOctaves = 2 }: KeyboardProps) => {
 
     const endNoteEvent = (note: Note) => {
         const noteEvent = noteEvents.find(
-            (event) => event.note.midi === note.midi
+            (event) => event.note.midi === note.midi && event.end === undefined
         )
         if (noteEvent) {
             setNoteEvents([
@@ -58,14 +58,15 @@ const Keyboard = ({ startOctave = 1, numOctaves = 2 }: KeyboardProps) => {
     const toggleMidiNote = (midi: number, value: boolean) => {
         const noteIndex = notes.findIndex((note) => note.midi === midi)
         if (noteIndex > -1) {
-            toggleNote(noteIndex, value)
             const note = notes[noteIndex]
-            if (value) {
-                playNote(note.name)
+            if (value && !note.on) {
+                startNote(note.name)
                 startNoteEvent(note)
-            } else {
+            } else if (!value && note.on) {
+                stopNote(note.name)
                 endNoteEvent(note)
             }
+            toggleNote(noteIndex, value)
         }
     }
 
